@@ -59,10 +59,60 @@ include("koneksi.php");
                 <td><?= $data['prodi'] ?></td>
                 <td><?= $data['alamat'] ?></td>
                 <td>
-                  <a href="#" class="btn btn-warning">Ubah</a>
+                  <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUbahData<?= $no ?>">Ubah</a>
                   <a href="#" class="btn btn-danger">Hapus</a>
                 </td>
               </tr>
+
+              <!-- ========== Start | Modal Ubah Data ========== -->
+              <!-- Modal -->
+              <div class="modal fade" id="modalUbahData<?= $no ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalUbahDataLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="modalUbahDataLabel">Form Ubah Data Mahasiswa</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="POST" action="aksi_crud.php">
+                      <div class="modal-body">
+
+                        <div class="mb-3">
+                          <label class="form-label">Nama Lengkap</label>
+                          <input type="text" value="<?= $data['nama'] ?>" name="tnama" class="form-control" placeholder="Masukkan Nama Lengkap">
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label">NIM</label>
+                          <input type="text" value="<?= $data['nim'] ?>" name="tnim" class="form-control" placeholder="Masukkan NIM ">
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label">Program Studi</label>
+                          <select class="form-select" name="tprodi">
+                            <option value="<?= $data['prodi'] ?>"><?= $data['prodi'] ?></option>
+                            <option value="S1 - Informatika">S1 - Informatika</option>
+                            <option value="S1 - Manajemen">S1 - Manajemen</option>
+                            <option value="S1 - Ekonomi">S1 - Ekonomi</option>
+                            <option value="S1 - Perminyakan">S1 - Perminyakan</option>
+                          </select>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label">Alamat</label>
+                          <textarea class="form-control" name="talamat" rows="3"><?= $data['alamat'] ?></textarea>
+
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" name="bubah" class="btn btn-primary">Ubah</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- ========== End | Modal Ubah Data ========== -->
+
             <?php endwhile ?>
           </table>
           <!-- =============== End | Data Tabel Mahasiswa =============== -->
@@ -102,7 +152,7 @@ include("koneksi.php");
 
                     <div class="mb-3">
                       <label class="form-label">Alamat</label>
-                      <textarea class="form-control" rows="3"></textarea>
+                      <textarea class="form-control" name="talamat" rows="3"></textarea>
 
                     </div>
                   </div>
