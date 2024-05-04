@@ -34,6 +34,8 @@ include("koneksi.php");
           </button>
 
           <table class="table table-bordered table-striped table-hover">
+
+
             <tr>
               <th>No.</th>
               <th>Nama</th>
@@ -42,17 +44,26 @@ include("koneksi.php");
               <th>Alamat</th>
               <th>Aksi</th>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>Benony Gabriel</td>
-              <td>105222002</td>
-              <td>Ilmu Komputer</td>
-              <td>Kebayoran Lama, Jakarta Selatan</td>
-              <td>
-                <a href="#" class="btn btn-warning">Ubah</a>
-                <a href="#" class="btn btn-danger">Hapus</a>
-              </td>
-            </tr>
+
+            <?php
+            // Menampilkan data Mahasiswa dari database
+            $no = 1;
+            $tampil = mysqli_query($KONEKSI, "SELECT * FROM tmhs ORDER BY id_mhs ASC");
+            while ($data = mysqli_fetch_array($tampil)) :
+            ?>
+
+              <tr>
+                <td><?= $no++ ?></td>
+                <td><?= $data['nama'] ?></td>
+                <td><?= $data['nim'] ?></td>
+                <td><?= $data['prodi'] ?></td>
+                <td><?= $data['alamat'] ?></td>
+                <td>
+                  <a href="#" class="btn btn-warning">Ubah</a>
+                  <a href="#" class="btn btn-danger">Hapus</a>
+                </td>
+              </tr>
+            <?php endwhile ?>
           </table>
           <!-- =============== End | Data Tabel Mahasiswa =============== -->
 
