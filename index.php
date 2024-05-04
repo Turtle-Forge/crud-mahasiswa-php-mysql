@@ -60,7 +60,7 @@ include("koneksi.php");
                 <td><?= $data['alamat'] ?></td>
                 <td>
                   <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUbahData<?= $no ?>">Ubah</a>
-                  <a href="#" class="btn btn-danger">Hapus</a>
+                  <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusData<?= $no ?>">Hapus</a>
                 </td>
               </tr>
 
@@ -74,6 +74,8 @@ include("koneksi.php");
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form method="POST" action="aksi_crud.php">
+                      <input type="hidden" name="id_mhs" value="<?= $data['id_mhs'] ?>">
+
                       <div class="modal-body">
 
                         <div class="mb-3">
@@ -112,6 +114,34 @@ include("koneksi.php");
                 </div>
               </div>
               <!-- ========== End | Modal Ubah Data ========== -->
+
+              <!-- ========== Start | Modal Hapus Data ========== -->
+              <!-- Modal -->
+              <div class="modal fade" id="modalHapusData<?= $no ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalUbahDataLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="modalUbahDataLabel">Konfirmasi Hapus Data Mahasiswa</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="POST" action="aksi_crud.php">
+                      <input type="hidden" name="id_mhs" value="<?= $data['id_mhs'] ?>">
+
+                      <div class="modal-body">
+                        <h5 class="text-center">Apakah anda yakin ingin menghapus data ini? <br>
+                          <span class="text-danger"><?= $data['nim'] ?> - <?= $data['nama'] ?></span>
+                        </h5>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" name="bhapus" class="btn btn-danger">Hapus</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- ========== End | Modal Hapus Data ========== -->
 
             <?php endwhile ?>
           </table>
